@@ -12,3 +12,12 @@ console.log("Hello, World!");
 console.log("" + sum(2, 3) + " is the sum of 2 and 3.");
 console.log(capitalise("nothing"));
 console.log(lastLetter("This should only return 1"));
+
+let button = document.querySelector('#btn');
+button.addEventListener('click', (e) => {
+    alert("Hello, World!");
+    console.log(e);
+    if (e.altKey) {
+        console.log("Alt key used");
+    }
+});
