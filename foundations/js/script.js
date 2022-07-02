@@ -26,7 +26,7 @@ button.addEventListener('click', (e) => {
 const ROCK = 'rock';
 const PAPER = 'paper';
 const SCISSORS = 'scissors';
-const GUESSES = [ROCK, ROCK, SCISSORS];
+const GUESSES = [ROCK, PAPER, SCISSORS];
 
 const PLAYER_WINS = 0;
 const COMPUTER_WINS = 1;
@@ -36,13 +36,15 @@ const ARGUMENT_ERROR_MESSAGE = 'ERROR';
 
 // Return either 'rock', 'paper', or 'scissors'.
 function computerGuess() {
-    return GUESSES[Math.floor(Math.random() * 3)];
+    let num = Math.floor(Math.random() * 3);
+    console.log("Random: " + num);
+    return GUESSES[num];
 }
 
 // Return 0 if the player wins, 1 if comuter wins, 2 if they draw.
 // computerGuess and playerGuess should be strings of 'rock', 'paper',
 // or 'scissors', otherwise 'ERROR' is returned.
-function playRPS(computerGuess, playerGuess) {
+function winCalculator(computerGuess, playerGuess) {
     if (typeof(computerGuess) != 'string' || typeof(playerGuess) != 'string'
             || arguments.length != 2) {
         return ARGUMENT_ERROR_MESSAGE;
@@ -84,7 +86,43 @@ function playRPS(computerGuess, playerGuess) {
     return ARGUMENT_ERROR_MESSAGE;
 }
 
+// Updates scoreTracker according to whether playerGuess beats a
+// randomised computer guess.
+function playRPS(playerGuess) {
+    let cGuess = computerGuess();
+    let result = winCalculator(cGuess, playerGuess);
+    console.log("Computer: " + cGuess + " Player: " + playerGuess + " Result: " + result);
+
+    if (result == PLAYER_WINS) {
+        numWins += 1;
+    } else if (result == COMPUTER_WINS) {
+        numLosses += 1;
+    }
+
+    scoreTrackertextContent = 'Player wins/losses: ' + wins + '/' + losses + '.';
+}
+
+// Add wins/losses counter.
+let gameContainer = document.querySelector('#rps-game');
+let scoreTracker = document.createElement('p');
+gameContainer.insertBefore(scoreTracker, gameContainer.children[0]);
+
+let numWins = 0;
+let numLosses = 0;
+updateWins(scoreTracker, numWins, numLosses);
+
+// Modify buttons.
 let rockBtn = document.querySelector('#rock');
 let paperBtn = document.querySelector('#paper');
 let scissorsButton = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', () => {
+    playRPS(ROCK);
+});
+paperBtn.addEventListener('click', () => {
+    playRPS(PAPER);
+});
+scissorsButton.addEventListener('click', () => {
+    playRPS(SCISSORS);
+});
 
