@@ -1,28 +1,3 @@
-let sum = (a, b) => a + b;
-
-function capitalise(str) {
-    return str[0].toUpperCase() + str.slice(1);
-}
-
-function lastLetter(str) {
-    return str[str.length - 1];
-}
-
-console.log("Hello, World!");
-console.log("" + sum(2, 3) + " is the sum of 2 and 3.");
-console.log(capitalise("nothing"));
-console.log(lastLetter("This should only return 1"));
-
-let button = document.querySelector('#btn');
-button.addEventListener('click', (e) => {
-    alert("Hello, World!");
-    console.log(e);
-    if (e.altKey) {
-        console.log("Alt key used");
-    }
-});
-
-// ---------- Rock, Paper, Scissors code ----------
 const ROCK = 'rock';
 const PAPER = 'paper';
 const SCISSORS = 'scissors';
@@ -35,16 +10,14 @@ const DRAW = 2;
 const ARGUMENT_ERROR_MESSAGE = 'ERROR';
 
 // Return either 'rock', 'paper', or 'scissors'.
-function computerGuess() {
-    let num = Math.floor(Math.random() * 3);
-    console.log("Random: " + num);
-    return GUESSES[num];
+function computerPlay() {
+    return GUESSES[Math.floor(Math.random() * 3)];
 }
 
 // Return 0 if the player wins, 1 if comuter wins, 2 if they draw.
 // computerGuess and playerGuess should be strings of 'rock', 'paper',
 // or 'scissors', otherwise 'ERROR' is returned.
-function winCalculator(computerGuess, playerGuess) {
+function winCalculator(computerGuess = computerPlay(), playerGuess) {
     if (typeof(computerGuess) != 'string' || typeof(playerGuess) != 'string'
             || arguments.length != 2) {
         return ARGUMENT_ERROR_MESSAGE;
@@ -88,18 +61,27 @@ function winCalculator(computerGuess, playerGuess) {
 
 // Updates scoreTracker according to whether playerGuess beats a
 // randomised computer guess.
-function playRPS(playerGuess) {
-    let cGuess = computerGuess();
+function playRound(playerGuess) {
+    let cGuess = computerPlay();
     let result = winCalculator(cGuess, playerGuess);
-    console.log("Computer: " + cGuess + " Player: " + playerGuess + " Result: " + result);
+
+    // Add game info line.
+    let info = document.createElement('li');
+    info.textContent = "Computer: " + cGuess + ", Player: " + playerGuess + ".";
+    infoContainer.insertBefore(info, infoContainer.children[0]);
 
     if (result == PLAYER_WINS) {
         numWins += 1;
+        info.style.color = 'green';
     } else if (result == COMPUTER_WINS) {
         numLosses += 1;
+        info.style.color = 'red';
+    } else if (result == DRAW) {
+        info.style.color = 'blue';
     }
 
-    scoreTrackertextContent = 'Player wins/losses: ' + wins + '/' + losses + '.';
+    // Update score tracker.
+    scoreTracker.textContent = 'Player wins/losses: ' + numWins + '/' + numLosses + '.';
 }
 
 // Add wins/losses counter.
@@ -109,7 +91,10 @@ gameContainer.insertBefore(scoreTracker, gameContainer.children[0]);
 
 let numWins = 0;
 let numLosses = 0;
-updateWins(scoreTracker, numWins, numLosses);
+scoreTracker.textContent = 'Player wins/losses: 0/0.';
+
+let infoContainer = document.createElement('ul');
+gameContainer.appendChild(infoContainer);
 
 // Modify buttons.
 let rockBtn = document.querySelector('#rock');
@@ -117,12 +102,12 @@ let paperBtn = document.querySelector('#paper');
 let scissorsButton = document.querySelector('#scissors');
 
 rockBtn.addEventListener('click', () => {
-    playRPS(ROCK);
+    playRound(ROCK);
 });
 paperBtn.addEventListener('click', () => {
-    playRPS(PAPER);
+    playRound(PAPER);
 });
 scissorsButton.addEventListener('click', () => {
-    playRPS(SCISSORS);
+    playRound(SCISSORS);
 });
 
