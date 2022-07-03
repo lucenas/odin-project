@@ -178,6 +178,28 @@ main {
     color: black;
 }
 
+/* ---- Etch-a-sketch ---- */
+#etch-container {
+    display: flex;
+    flex-flow: row wrap;
+    aspect-ratio: 1/1;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.etch-box {
+    border: 1px solid white;
+    margin: -1px;
+    width: 10px;
+    height: 10px;
+}
+
+@media only screen and (min-width: 500px) {
+    #etch-container {
+        width: 500px;
+    }
+}
+
 @media only screen and (min-width: 700px) {
     p {
         max-width: 700px;
