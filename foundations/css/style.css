@@ -179,6 +179,27 @@ main {
 }
 
 /* ---- Etch-a-sketch ---- */
+#etch-settings {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+#etch-settings > button {
+    background-color: var(--highlight-one);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 0.5em;
+    margin: 1em;
+    font-size: 1.2em;
+}
+
+#etch-settings > button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
 #etch-container {
     display: flex;
     flex-flow: row wrap;
