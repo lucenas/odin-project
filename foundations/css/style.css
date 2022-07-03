@@ -1,0 +1,61 @@
+:root {
+    --page-background: #1d1d1e;
+    --highlight-one: #ffa500;
+    --highlight-two: #8BBF9F;
+    --highlight-three: #857E7B;
+    color: white;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--page-background);
+    margin: 0;
+}
+
+#page-header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    justify-content: space-between;
+
+    background-color: black;
+    padding: 10px;
+}
+
+#page-header h1 {
+    font-size: 1.3em;
+    background-color: inherit;
+    padding: 0;
+}
+
+#page-header nav {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: space-evenly;
+
+    background-color: inherit;
+}
+
+#page-header a {
+    color: white;
+    background-color: inherit;
+    padding: 0 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#page-header a:hover {
+    color: var(--highlight-one);
+}
+
+h1 {
+    text-align: center;
+    padding: 0.4em;
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 850px) {
+
+}
