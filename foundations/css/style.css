@@ -213,7 +213,7 @@ main {
 }
 
 .etch-box {
-    border: 1px solid white;
+    border: 1px solid black;
     margin: -1px;
     width: 10px;
     height: 10px;

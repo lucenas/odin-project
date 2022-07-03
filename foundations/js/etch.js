@@ -31,10 +31,10 @@ function makeGrid(container, numRows = 10, numCols = 10,
     }
 }
 
-// Set the style.backgroundColor of each child of container to color().
+// Set the style.backgroundColor of each child of container to color.
 function resetColors(container, color) {
     for (i = 0; i < container.children.length; i++) {
-        container.children[i].style.backgroundColor = color();
+        container.children[i].style.backgroundColor = color;
     }
 }
 
@@ -53,11 +53,12 @@ makeGrid(etchContainer);
 
 let numRows = 10;
 let numCols = 10;
+let color = () => { return HIGHLIGHT_ONE; };
 
 // Settings buttons
 let resetButton = document.querySelector('#etch-reset');
 resetButton.addEventListener('click', () => resetColors(etchContainer,
-    () => { return DEFAULT_COLOR; }));
+    DEFAULT_COLOR));
 
 let randomButton = document.querySelector('#etch-random');
 let randomEnabled = false;
@@ -65,9 +66,30 @@ randomButton.addEventListener('click', () => {
     randomEnabled = !randomEnabled;
     if (!randomEnabled) {
         randomButton.classList.remove('enabled');
-        makeGrid(etchContainer, numRows, numCols);
+        color = () => { return HIGHLIGHT_ONE; };
     } else {
         randomButton.classList.add('enabled');
-        makeGrid(etchContainer, numRows, numCols, randRGB);
+        color = randRGB;
     }
+    makeGrid(etchContainer, numRows, numCols, color);
+});
+
+let sizeButton = document.querySelector('#etch-size');
+sizeButton.addEventListener('click', () => {
+    let usrWidth = prompt("Enter the width of the grid");
+    if (isNaN(usrWidth) || usrWidth == '') {
+        alert("Provided width is not a number");
+        return;
+    }
+
+    let usrHeight = prompt("Enter the height of the grid");
+    if (isNaN(usrHeight) || usrHeight == '') {
+        alert("Provided height is not a number");
+        return;
+    }
+
+    numRows = usrHeight;
+    numCols = usrWidth;
+
+    makeGrid(etchContainer, numRows, numCols, color);
 });
