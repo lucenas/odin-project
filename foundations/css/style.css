@@ -200,6 +200,10 @@ main {
     cursor: pointer;
 }
 
+#etch-random.enabled {
+    background-color: var(--highlight-two);
+}
+
 #etch-container {
     display: flex;
     flex-flow: row wrap;
