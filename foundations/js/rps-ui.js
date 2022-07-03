@@ -66,19 +66,19 @@ function playRound(playerGuess) {
     let result = winCalculator(cGuess, playerGuess);
 
     // Add game info line.
-    let info = document.createElement('li');
+    let info = document.createElement('p');
     info.textContent = "Computer: " + cGuess + ", Player: " + playerGuess + ".";
     infoContainer.insertBefore(info, infoContainer.children[0]);
 
     if (result == PLAYER_WINS) {
         winCounter.textContent = parseInt(winCounter.textContent) + 1;
-        info.style.color = 'green';
+        //info.style.color = 'green';
     } else if (result == COMPUTER_WINS) {
         lossCounter.textContent = parseInt(lossCounter.textContent) + 1;
-        info.style.color = 'red';
+        //info.style.color = 'red';
     } else if (result == DRAW) {
         drawCounter.textContent = parseInt(drawCounter.textContent) + 1;
-        info.style.color = 'blue';
+        //info.style.color = 'blue';
     }
 
     // Update scores.
@@ -89,8 +89,7 @@ let winCounter = document.querySelector("#wins #score");
 let lossCounter = document.querySelector("#losses #score");
 let drawCounter = document.querySelector("#draws #score");
 
-let infoContainer = document.createElement('ul');
-gameContainer.appendChild(infoContainer);
+let infoContainer = document.querySelector("#rps-game-list");
 
 // Modify buttons.
 let rockBtn = document.querySelector('#rock');

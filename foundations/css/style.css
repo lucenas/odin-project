@@ -113,9 +113,31 @@ p {
     color: black;
 }
 
+#rps-game-list {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 10px;
+}
+
+#rps-game-list p {
+    background-color: var(--highlight-three);
+    width: 100%;
+    padding: 4px;
+    margin: 2px 0;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: black;
+}
+
 @media only screen and (min-width: 700px) {
     p {
         max-width: 700px;
         margin: auto;
+    }
+
+    #rps-game-list {
+        width: 700px;
+        margin: auto;
+        margin-top: 10px;
     }
 }
