@@ -18,8 +18,8 @@ function computerPlay() {
 // computerGuess and playerGuess should be strings of 'rock', 'paper',
 // or 'scissors', otherwise 'ERROR' is returned.
 function winCalculator(computerGuess = computerPlay(), playerGuess) {
-    if (typeof(computerGuess) != 'string' || typeof(playerGuess) != 'string'
-            || arguments.length != 2) {
+    if (typeof (computerGuess) != 'string' || typeof (playerGuess) != 'string'
+        || arguments.length != 2) {
         return ARGUMENT_ERROR_MESSAGE;
     }
 
@@ -71,27 +71,23 @@ function playRound(playerGuess) {
     infoContainer.insertBefore(info, infoContainer.children[0]);
 
     if (result == PLAYER_WINS) {
-        numWins += 1;
+        winCounter.textContent = parseInt(winCounter.textContent) + 1;
         info.style.color = 'green';
     } else if (result == COMPUTER_WINS) {
-        numLosses += 1;
+        lossCounter.textContent = parseInt(lossCounter.textContent) + 1;
         info.style.color = 'red';
     } else if (result == DRAW) {
+        drawCounter.textContent = parseInt(drawCounter.textContent) + 1;
         info.style.color = 'blue';
     }
 
-    // Update score tracker.
-    scoreTracker.textContent = 'Player wins/losses: ' + numWins + '/' + numLosses + '.';
+    // Update scores.
 }
 
-// Add wins/losses counter.
 let gameContainer = document.querySelector('#rps-game');
-let scoreTracker = document.createElement('p');
-gameContainer.insertBefore(scoreTracker, gameContainer.children[0]);
-
-let numWins = 0;
-let numLosses = 0;
-scoreTracker.textContent = 'Player wins/losses: 0/0.';
+let winCounter = document.querySelector("#wins #score");
+let lossCounter = document.querySelector("#losses #score");
+let drawCounter = document.querySelector("#draws #score");
 
 let infoContainer = document.createElement('ul');
 gameContainer.appendChild(infoContainer);
