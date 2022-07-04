@@ -107,6 +107,31 @@ main {
     margin: 0 0 0 auto;
 }
 
+/* ---- Home Page ---- */
+.tiles {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.tiles > a {
+    width: 30%;
+    background-color: var(--highlight-three);
+    box-shadow: 6px 6px 3px black;
+    color: black;
+    padding: 25px 1em;
+    margin: auto 2em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.tiles > a:hover {
+    box-shadow: 0 0;
+    background-color: var(--highlight-one);
+    transform: translate(6px, 6px);
+}
+
 /* ---- RPS Game ---- */
 
 #rps-game {
@@ -235,5 +260,14 @@ main {
         width: 700px;
         margin: auto;
         margin-top: 10px;
+    }
+
+    .tiles {
+        width: 700px;
+        margin: auto;
+    }
+
+    .tiles p {
+        width: 170px;
     }
 }
